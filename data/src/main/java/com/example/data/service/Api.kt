@@ -5,11 +5,12 @@ import com.example.data.models.DishesModel
 import retrofit2.http.GET
 
 interface Api {
+
     @GET(CATEGORIES_API)
-    fun getCategories(): CategoriesModel
+    suspend fun getCategories(): CategoriesModel
 
     @GET(DISHES_API)
-    fun getDishes(): DishesModel
+    suspend fun getDishes(): DishesModel
 
     private companion object {
         private const val CATEGORIES_API = "058729bd-1402-4578-88de-265481fd7d54"
