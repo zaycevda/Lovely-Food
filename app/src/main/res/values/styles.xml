@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BottomNavigationActiveTextStyle">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomNavigationInactiveTextStyle">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textColor">@color/gray_70</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+</resources>
