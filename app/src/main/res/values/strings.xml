@@ -6,4 +6,8 @@
     <string name="search">Поиск</string>
     <string name="cart">Корзина</string>
     <string name="account">Аккаунт</string>
+
+    <!-- Static text -->
+    <string name="st_petersburg">Санкт-Петербург</string>
+    <string name="date">12 Августа, 2023</string>
 </resources>

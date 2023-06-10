@@ -9,7 +9,7 @@ interface Api {
 
     @Headers("$CACHE_CONTROL$CACHE_LIFESPAN")
     @GET(CATEGORIES_API)
-    suspend fun getCategories(): CategoriesModel
+    suspend fun getCategories(): CategoriesModel?
 
     @Headers("$CACHE_CONTROL$CACHE_LIFESPAN")
     @GET(DISHES_API)

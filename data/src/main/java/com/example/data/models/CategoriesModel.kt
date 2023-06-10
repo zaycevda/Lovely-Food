@@ -3,6 +3,6 @@ package com.example.data.models
 import com.google.gson.annotations.SerializedName
 
 data class CategoriesModel(
-    @SerializedName("categories")
+    @SerializedName("сategories")
     val categories: List<CategoryModel>
 )

@@ -3,6 +3,7 @@ package com.example.testforeffectivemobile.di.components
 import com.example.testforeffectivemobile.di.modules.AppModule
 import com.example.testforeffectivemobile.di.modules.DataModule
 import com.example.testforeffectivemobile.di.modules.DomainModule
+import com.example.testforeffectivemobile.presentation.main.CategoriesFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,4 +15,6 @@ import javax.inject.Singleton
         DomainModule::class
     ]
 )
-interface AppComponent
+interface AppComponent {
+    fun injectCategoriesFragment(categoriesFragment: CategoriesFragment)
+}
