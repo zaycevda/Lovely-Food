@@ -10,4 +10,10 @@
     <!-- Static text -->
     <string name="st_petersburg">Санкт-Петербург</string>
     <string name="date">12 Августа, 2023</string>
+
+    <!-- Tags -->
+    <string name="all_menu">Все меню</string>
+    <string name="salads">Салаты</string>
+    <string name="with_rice">С рисом</string>
+    <string name="with_fish">С рыбой</string>
 </resources>

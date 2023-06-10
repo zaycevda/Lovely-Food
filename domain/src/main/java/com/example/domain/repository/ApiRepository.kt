@@ -7,5 +7,5 @@ interface ApiRepository {
 
     suspend fun getCategories(): List<Category>?
 
-    suspend fun getDishes(): List<Dish>
+    suspend fun getDishes(): List<Dish>?
 }

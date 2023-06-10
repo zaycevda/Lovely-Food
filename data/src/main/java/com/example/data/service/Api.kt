@@ -13,7 +13,7 @@ interface Api {
 
     @Headers("$CACHE_CONTROL$CACHE_LIFESPAN")
     @GET(DISHES_API)
-    suspend fun getDishes(): DishesModel
+    suspend fun getDishes(): DishesModel?
 
     private companion object {
         private const val CACHE_CONTROL = "Cache-Control: max-age="

@@ -30,7 +30,7 @@ class CategoriesViewModel(
         viewModelScope.launch(exceptionHandler) {
             _categories.value = LoadingScreenState()
             val categories = getCategoriesUseCase.execute()
-            Log.e(TAG, "getCategories: categories = $categories")
+            Log.d(TAG, "getCategories: categories = $categories")
             _categories.value = SuccessScreenState(categories)
         }
     }

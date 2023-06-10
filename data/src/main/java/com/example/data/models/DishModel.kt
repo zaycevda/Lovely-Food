@@ -14,7 +14,7 @@ data class DishModel(
     @SerializedName("description")
     val description: String,
     @SerializedName("image_url")
-    val imageUrl: String,
+    val imageUrl: String?,
     @SerializedName("tegs")
     val tags: List<String>
 )

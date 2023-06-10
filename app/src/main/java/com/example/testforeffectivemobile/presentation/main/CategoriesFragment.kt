@@ -2,6 +2,7 @@ package com.example.testforeffectivemobile.presentation.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -50,8 +51,11 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
 
     private fun initAdapter() {
         adapter = CategoriesAdapter(
-            onClick = {
-                findNavController().navigate(R.id.action_categoriesFragment_to_productsFragment)
+            onClick = { categoryName ->
+                findNavController().navigate(
+                    R.id.action_categoriesFragment_to_dishesFragment,
+                    bundleOf(DishesFragment.CATEGORY_NAME_KEY to categoryName)
+                )
             }
         )
         binding.rvCategories.adapter = adapter

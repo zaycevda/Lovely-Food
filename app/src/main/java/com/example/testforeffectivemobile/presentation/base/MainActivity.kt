@@ -22,5 +22,22 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNav.setupWithNavController(navController)
+
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_main ->
+                    if (item.isChecked) return@setOnItemSelectedListener true
+                    else navController.navigate(R.id.nav_main)
+
+                R.id.nav_search -> return@setOnItemSelectedListener false
+
+                R.id.nav_cart ->
+                    if (item.isChecked) return@setOnItemSelectedListener true
+                    else navController.navigate(R.id.nav_cart)
+
+                R.id.nav_account -> return@setOnItemSelectedListener false
+            }
+            return@setOnItemSelectedListener true
+        }
     }
 }

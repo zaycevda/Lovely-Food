@@ -13,16 +13,17 @@ import com.example.testforeffectivemobile.R
 import com.example.testforeffectivemobile.databinding.ItemCategoryBinding
 
 class CategoriesAdapter(
-    private val onClick: () -> Unit
+    private val onClick: (categoryName: String) -> Unit
 ) : ListAdapter<Category, CategoriesViewHolder>(CategoriesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         CategoriesViewHolder.create(parent)
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val category = getItem(position)
+        holder.bind(category)
         holder.itemView.setOnClickListener {
-            onClick()
+            onClick(category.name)
         }
     }
 }

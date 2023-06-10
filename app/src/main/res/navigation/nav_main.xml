@@ -11,21 +11,21 @@
         android:label="CategoriesFragment"
         tools:layout="@layout/fragment_categories">
         <action
-            android:id="@+id/action_categoriesFragment_to_productsFragment"
-            app:destination="@id/productsFragment" />
+            android:id="@+id/action_categoriesFragment_to_dishesFragment"
+            app:destination="@id/dishesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/productsFragment"
-        android:name="com.example.testforeffectivemobile.presentation.main.ProductsFragment"
-        android:label="ProductsFragment"
-        tools:layout="@layout/fragment_products">
+        android:id="@+id/dishesFragment"
+        android:name="com.example.testforeffectivemobile.presentation.main.DishesFragment"
+        android:label="DishesFragment"
+        tools:layout="@layout/fragment_dishes">
         <action
-            android:id="@+id/action_productsFragment_to_productDialog"
-            app:destination="@id/productDialog" />
+            android:id="@+id/action_dishesFragment_to_dishDialog"
+            app:destination="@id/dishDialog" />
     </fragment>
     <dialog
-        android:id="@+id/productDialog"
-        android:name="com.example.testforeffectivemobile.presentation.main.ProductDialog"
-        android:label="ProductDialog"
-        tools:layout="@layout/dialog_product" />
+        android:id="@+id/dishDialog"
+        android:name="com.example.testforeffectivemobile.presentation.main.DishDialog"
+        android:label="DishDialog"
+        tools:layout="@layout/dialog_dish" />
 </navigation>
