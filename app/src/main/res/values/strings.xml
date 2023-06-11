@@ -1,5 +1,10 @@
 <resources>
+    <!-- Base -->
     <string name="app_name">TestForEffectiveMobile</string>
+
+    <!-- Dynamic text -->
+    <string name="dish_price">%s ₽</string>
+    <string name="dish_weight">%sг</string>
 
     <!-- Menu -->
     <string name="main">Главная</string>
@@ -8,8 +13,10 @@
     <string name="account">Аккаунт</string>
 
     <!-- Static text -->
-    <string name="st_petersburg">Санкт-Петербург</string>
+    <string name="add_to_cart">Добавить в корзину</string>
     <string name="date">12 Августа, 2023</string>
+    <string name="point">·</string>
+    <string name="st_petersburg">Санкт-Петербург</string>
 
     <!-- Tags -->
     <string name="all_menu">Все меню</string>

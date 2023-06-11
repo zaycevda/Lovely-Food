@@ -13,7 +13,7 @@ import com.example.testforeffectivemobile.R
 import com.example.testforeffectivemobile.databinding.ItemDishBinding
 
 class DishesAdapter(
-    private val onClick: (dishId: Long) -> Unit
+    private val onClick: (dish: Dish) -> Unit
 ) : RecyclerView.Adapter<DishesAdapter.ViewHolder>() {
 
     private val differ = AsyncListDiffer(this, DiffUtilCallback())
@@ -31,7 +31,7 @@ class DishesAdapter(
             binding.tvDish.text = dish.name
 
             itemView.setOnClickListener {
-                onClick(dish.id)
+                onClick(dish)
             }
         }
     }

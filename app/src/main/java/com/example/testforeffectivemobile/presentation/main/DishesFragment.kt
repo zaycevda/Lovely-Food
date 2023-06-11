@@ -54,10 +54,16 @@ class DishesFragment : Fragment(R.layout.fragment_dishes) {
 
     private fun initAdapter() {
         adapter = DishesAdapter(
-            onClick = { dishId ->
+            onClick = { dish ->
                 findNavController().navigate(
                     R.id.action_dishesFragment_to_dishDialog,
-                    bundleOf(DishDialog.DISH_ID_KEY to dishId)
+                    bundleOf(
+                        DishDialog.DESCRIPTION_KEY to dish.description,
+                        DishDialog.IMAGE_URL_KEY to dish.imageUrl,
+                        DishDialog.NAME_KEY to dish.name,
+                        DishDialog.PRICE_KEY to dish.price,
+                        DishDialog.WEIGHT_KEY to dish.weight
+                    )
                 )
             }
         )
@@ -71,6 +77,7 @@ class DishesFragment : Fragment(R.layout.fragment_dishes) {
             INCLUDE_EDGE
         )
 
+        binding.rvDishes.overScrollMode = View.OVER_SCROLL_NEVER
         binding.rvDishes.adapter = adapter
         binding.rvDishes.addItemDecoration(itemDecoration)
     }
