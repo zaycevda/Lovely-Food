@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.domain.models.Dish
 import com.example.testforeffectivemobile.App
 import com.example.testforeffectivemobile.R
 import com.example.testforeffectivemobile.databinding.FragmentDishesBinding
@@ -109,15 +110,42 @@ class DishesFragment : Fragment(R.layout.fragment_dishes) {
                         binding.llDishes.isGone = false
 
                         dishes?.let { adapter?.dishes = it }
+                        dishes?.getDishesByTag()
                     }
                 )
             }
         }
     }
 
+    private fun List<Dish>.getDishesByTag() {
+        binding.tvAllMenu.setOnClickListener {
+            let { adapter?.dishes = it.filterByTag(ALL_MENU_TAG) }
+        }
+
+        binding.tvSalads.setOnClickListener {
+            let { adapter?.dishes = it.filterByTag(SALADS_TAG) }
+        }
+
+        binding.tvWithRice.setOnClickListener {
+            let { adapter?.dishes = it.filterByTag(WITH_RICE_TAG) }
+        }
+
+        binding.tvWithFish.setOnClickListener {
+            let { adapter?.dishes = it.filterByTag(WITH_FISH_TAG) }
+        }
+    }
+
+    private fun List<Dish>.filterByTag(tag: String) = filter { dish ->
+        dish.tags.any { it.equals(tag, ignoreCase = true) }
+    }
+
     companion object {
         const val CATEGORY_NAME_KEY = "CATEGORY_NAME_KEY"
         private const val SPAN_COUNT = 3
         private const val INCLUDE_EDGE = true
+        private const val ALL_MENU_TAG = "Все меню"
+        private const val SALADS_TAG = "Салаты"
+        private const val WITH_RICE_TAG = "С рисом"
+        private const val WITH_FISH_TAG = "С рыбой"
     }
 }
