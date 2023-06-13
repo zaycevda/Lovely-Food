@@ -33,6 +33,14 @@ class PurchaseRepositoryImpl(db: AppDatabase) : PurchaseRepository {
         return purchasesEntity.map { it.toPurchase() }
     }
 
+    override suspend fun updatePurchase(purchase: Purchase) {
+        val purchaseEntity = purchase.toPurchaseEntity()
+
+        Log.d(TAG, "updatePurchase: purchaseEntity = $purchaseEntity")
+
+        dao.update(purchaseEntity)
+    }
+
     private companion object {
         private const val TAG = "PurchaseRepositoryImpl"
     }

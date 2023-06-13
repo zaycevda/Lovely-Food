@@ -52,7 +52,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         adapter = PurchasesAdapter(
             onClickMinus = { purchase ->
                 if (purchase.count == 1) deletePurchase(purchase.id)
-                else viewModel.addPurchase(
+                else viewModel.updatePurchase(
                     Purchase(
                         id = purchase.id,
                         count = purchase.count - 1,
@@ -65,7 +65,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
             },
             onClickPlus = { purchase ->
-                viewModel.addPurchase(
+                viewModel.updatePurchase(
                     Purchase(
                         id = purchase.id,
                         count = purchase.count + 1,

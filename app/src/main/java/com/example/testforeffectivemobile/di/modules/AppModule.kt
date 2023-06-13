@@ -6,6 +6,7 @@ import com.example.domain.usecases.DeletePurchaseUseCase
 import com.example.domain.usecases.GetCategoriesUseCase
 import com.example.domain.usecases.GetDishesUseCase
 import com.example.domain.usecases.GetPurchasesUseCase
+import com.example.domain.usecases.UpdatePurchaseUseCase
 import com.example.testforeffectivemobile.presentation.cart.viewmodels.CartViewModelFactory
 import com.example.testforeffectivemobile.presentation.main.viewmodels.CategoriesViewModelFactory
 import com.example.testforeffectivemobile.presentation.main.viewmodels.DishesViewModelFactory
@@ -40,12 +41,12 @@ class AppModule(val context: Context) {
     @Singleton
     @Provides
     fun provideCartViewModelFactory(
-        addPurchaseUseCase: AddPurchaseUseCase,
         deletePurchaseUseCase: DeletePurchaseUseCase,
-        getPurchasesUseCase: GetPurchasesUseCase
+        getPurchasesUseCase: GetPurchasesUseCase,
+        updatePurchaseUseCase: UpdatePurchaseUseCase
     ) = CartViewModelFactory(
-        addPurchaseUseCase = addPurchaseUseCase,
         deletePurchaseUseCase = deletePurchaseUseCase,
-        getPurchasesUseCase = getPurchasesUseCase
+        getPurchasesUseCase = getPurchasesUseCase,
+        updatePurchaseUseCase = updatePurchaseUseCase
     )
 }

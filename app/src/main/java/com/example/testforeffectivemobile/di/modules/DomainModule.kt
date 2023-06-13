@@ -7,6 +7,7 @@ import com.example.domain.usecases.DeletePurchaseUseCase
 import com.example.domain.usecases.GetCategoriesUseCase
 import com.example.domain.usecases.GetDishesUseCase
 import com.example.domain.usecases.GetPurchasesUseCase
+import com.example.domain.usecases.UpdatePurchaseUseCase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -51,6 +52,14 @@ class DomainModule {
     fun provideGetPurchasesUseCase(
         repository: PurchaseRepository
     ) = GetPurchasesUseCase(
+        repository = repository
+    )
+
+    @Singleton
+    @Provides
+    fun provideUpdatePurchaseUseCase(
+        repository: PurchaseRepository
+    ) = UpdatePurchaseUseCase(
         repository = repository
     )
 }

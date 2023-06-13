@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.Purchase
-import com.example.domain.usecases.AddPurchaseUseCase
 import com.example.domain.usecases.DeletePurchaseUseCase
 import com.example.domain.usecases.GetPurchasesUseCase
+import com.example.domain.usecases.UpdatePurchaseUseCase
 import com.example.testforeffectivemobile.presentation.main.viewmodels.ScreenState
 import com.example.testforeffectivemobile.presentation.main.viewmodels.ScreenState.ErrorScreenState
 import com.example.testforeffectivemobile.presentation.main.viewmodels.ScreenState.LoadingScreenState
@@ -17,26 +17,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class CartViewModel(
-    private val addPurchaseUseCase: AddPurchaseUseCase,
     private val deletePurchaseUseCase: DeletePurchaseUseCase,
-    private val getPurchasesUseCase: GetPurchasesUseCase
+    private val getPurchasesUseCase: GetPurchasesUseCase,
+    private val updatePurchaseUseCase: UpdatePurchaseUseCase
 ) : ViewModel() {
 
     private val _purchases: MutableStateFlow<ScreenState<List<Purchase>>> =
         MutableStateFlow(SuccessScreenState(listOf()))
     val purchases: StateFlow<ScreenState<List<Purchase>>> = _purchases
-
-    fun addPurchase(purchase: Purchase) {
-        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            Log.e(TAG, "addPurchase: ${throwable.message}")
-        }
-
-        viewModelScope.launch(exceptionHandler) {
-            Log.d(TAG, "addPurchase: purchase = $purchase")
-            addPurchaseUseCase.execute(purchase)
-            getPurchases()
-        }
-    }
 
     fun deletePurchase(id: Long) {
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -61,6 +49,18 @@ class CartViewModel(
             val purchases = getPurchasesUseCase.execute()
             Log.d(TAG, "getPurchases: purchases = $purchases")
             _purchases.value = SuccessScreenState(purchases)
+        }
+    }
+
+    fun updatePurchase(purchase: Purchase) {
+        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            Log.e(TAG, "updatePurchase: ${throwable.message}")
+        }
+
+        viewModelScope.launch(exceptionHandler) {
+            Log.d(TAG, "updatePurchase: purchase = $purchase")
+            updatePurchaseUseCase.execute(purchase)
+            getPurchases()
         }
     }
 

@@ -9,4 +9,6 @@ interface PurchaseRepository {
     suspend fun deletePurchase(id: Long)
 
     suspend fun getPurchases(): List<Purchase>
+
+    suspend fun updatePurchase(purchase: Purchase)
 }

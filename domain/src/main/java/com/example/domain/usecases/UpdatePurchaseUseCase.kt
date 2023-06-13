@@ -1,0 +1,10 @@
+package com.example.domain.usecases
+
+import com.example.domain.models.Purchase
+import com.example.domain.repository.PurchaseRepository
+
+class UpdatePurchaseUseCase(private val repository: PurchaseRepository) {
+    suspend fun execute(purchase: Purchase) {
+        repository.updatePurchase(purchase = purchase)
+    }
+}
