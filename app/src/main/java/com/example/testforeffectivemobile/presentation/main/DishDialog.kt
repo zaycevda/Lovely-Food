@@ -29,6 +29,8 @@ class DishDialog : DialogFragment(R.layout.dialog_dish) {
 
         addPurchase()
 
+        navigate()
+
         return AlertDialog.Builder(requireActivity())
             .setView(binding.root)
             .create()
@@ -55,6 +57,12 @@ class DishDialog : DialogFragment(R.layout.dialog_dish) {
                 REQUEST_ACTION_KEY,
                 bundleOf(ACTION_BUNDLE_KEY to true)
             )
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun navigate() {
+        binding.mcvClose.setOnClickListener {
             findNavController().navigateUp()
         }
     }

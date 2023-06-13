@@ -52,27 +52,33 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         adapter = PurchasesAdapter(
             onClickMinus = { purchase ->
                 if (purchase.count == 1) deletePurchase(purchase.id)
-                else addPurchase(purchase)
+                else viewModel.addPurchase(
+                    Purchase(
+                        id = purchase.id,
+                        count = purchase.count - 1,
+                        imageUrl = purchase.imageUrl,
+                        name = purchase.name,
+                        price = purchase.price,
+                        weight = purchase.weight
+                    )
+                )
+
             },
             onClickPlus = { purchase ->
-                addPurchase(purchase)
+                viewModel.addPurchase(
+                    Purchase(
+                        id = purchase.id,
+                        count = purchase.count + 1,
+                        imageUrl = purchase.imageUrl,
+                        name = purchase.name,
+                        price = purchase.price,
+                        weight = purchase.weight
+                    )
+                )
             },
         )
         binding.rvPurchase.overScrollMode = View.OVER_SCROLL_NEVER
         binding.rvPurchase.adapter = adapter
-    }
-
-    private fun addPurchase(purchase: Purchase) {
-        viewModel.addPurchase(
-            Purchase(
-                id = purchase.id,
-                count = purchase.count - 1,
-                imageUrl = purchase.imageUrl,
-                name = purchase.name,
-                price = purchase.price,
-                weight = purchase.weight
-            )
-        )
     }
 
     private fun deletePurchase(id: Long) {
