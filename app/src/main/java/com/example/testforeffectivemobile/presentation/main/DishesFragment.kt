@@ -5,11 +5,13 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.domain.models.Dish
+import com.example.domain.models.Purchase
 import com.example.testforeffectivemobile.App
 import com.example.testforeffectivemobile.R
 import com.example.testforeffectivemobile.databinding.FragmentDishesBinding
@@ -32,6 +34,11 @@ class DishesFragment : Fragment(R.layout.fragment_dishes) {
 
     private var adapter: DishesAdapter? = null
 
+    private var imageUrl: String? = null
+    private var name = ""
+    private var price = 0
+    private var weight = 0
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,6 +49,8 @@ class DishesFragment : Fragment(R.layout.fragment_dishes) {
         initToolbar()
 
         getDishes()
+
+        addPurchase()
     }
 
     override fun onDestroyView() {
@@ -56,14 +65,18 @@ class DishesFragment : Fragment(R.layout.fragment_dishes) {
     private fun initAdapter() {
         adapter = DishesAdapter(
             onClick = { dish ->
+                imageUrl = dish.imageUrl
+                name = dish.name
+                price = dish.price
+                weight = dish.weight
                 findNavController().navigate(
                     R.id.action_dishesFragment_to_dishDialog,
                     bundleOf(
                         DishDialog.DESCRIPTION_KEY to dish.description,
-                        DishDialog.IMAGE_URL_KEY to dish.imageUrl,
-                        DishDialog.NAME_KEY to dish.name,
-                        DishDialog.PRICE_KEY to dish.price,
-                        DishDialog.WEIGHT_KEY to dish.weight
+                        DishDialog.IMAGE_URL_KEY to imageUrl,
+                        DishDialog.NAME_KEY to name,
+                        DishDialog.PRICE_KEY to price,
+                        DishDialog.WEIGHT_KEY to weight
                     )
                 )
             }
@@ -137,6 +150,24 @@ class DishesFragment : Fragment(R.layout.fragment_dishes) {
 
     private fun List<Dish>.filterByTag(tag: String) = filter { dish ->
         dish.tags.any { it.equals(tag, ignoreCase = true) }
+    }
+
+    private fun addPurchase() {
+        setFragmentResultListener(DishDialog.REQUEST_ACTION_KEY) { _, bundle ->
+            bundle.getBoolean(DishDialog.ACTION_BUNDLE_KEY).let { needAdd ->
+                if (needAdd) {
+                    val purchase =
+                        Purchase(
+                            count = 1,
+                            imageUrl = imageUrl,
+                            name = name,
+                            price = price,
+                            weight = weight
+                        )
+                    viewModel.addPurchase(purchase)
+                }
+            }
+        }
     }
 
     companion object {

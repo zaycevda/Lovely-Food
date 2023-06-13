@@ -1,9 +1,13 @@
 package com.example.testforeffectivemobile.di.modules
 
 import android.content.Context
+import androidx.room.Room
 import com.example.data.retrofit.repository.ApiRepositoryImpl
 import com.example.data.retrofit.service.Api
+import com.example.data.room.database.AppDatabase
+import com.example.data.room.repository.PurchaseRepositoryImpl
 import com.example.domain.repository.ApiRepository
+import com.example.domain.repository.PurchaseRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -19,10 +23,9 @@ class DataModule {
     @Provides
     fun provideApiRepository(
         api: Api
-    ): ApiRepository =
-        ApiRepositoryImpl(
-            api = api
-        )
+    ): ApiRepository = ApiRepositoryImpl(
+        api = api
+    )
 
     @Singleton
     @Provides
@@ -53,8 +56,27 @@ class DataModule {
             .build()
     }
 
+    @Singleton
+    @Provides
+    fun providePurchasesRepository(
+        db: AppDatabase
+    ): PurchaseRepository = PurchaseRepositoryImpl(
+        db = db
+    )
+
+    @Singleton
+    @Provides
+    fun provideRoom(
+        context: Context
+    ) = Room.databaseBuilder(
+        context,
+        AppDatabase::class.java,
+        APP_DATABASE
+    ).build()
+
     private companion object {
-        private const val CACHE_SIZE: Long = 10 * 1024 * 1024 // 10 MB
+        private const val APP_DATABASE = "app_database"
         private const val BASE_URL = "https://run.mocky.io/v3/"
+        private const val CACHE_SIZE: Long = 10 * 1024 * 1024 // 10 MB
     }
 }

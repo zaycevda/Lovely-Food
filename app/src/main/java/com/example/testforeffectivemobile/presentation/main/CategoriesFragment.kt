@@ -58,6 +58,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories) {
                 )
             }
         )
+        binding.rvCategories.overScrollMode = View.OVER_SCROLL_NEVER
         binding.rvCategories.adapter = adapter
     }
 

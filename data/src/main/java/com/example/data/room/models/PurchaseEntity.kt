@@ -12,7 +12,7 @@ data class PurchaseEntity(
     @ColumnInfo("count")
     val count: Int,
     @ColumnInfo("image_url")
-    val imageUrl: String,
+    val imageUrl: String?,
     @ColumnInfo("name")
     val name: String,
     @ColumnInfo("price")

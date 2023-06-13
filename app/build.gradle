@@ -61,6 +61,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$gson_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
+    // Room
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     // ViewBinding delegate
     implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$view_binding_delegate_version"
 }

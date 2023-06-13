@@ -2,6 +2,7 @@ package com.example.data.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.data.room.models.PurchaseEntity
 
@@ -11,7 +12,7 @@ interface PurchaseDao {
     @Query("DELETE from purchases WHERE id = :id")
     suspend fun delete(id: Long)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(purchaseEntity: PurchaseEntity)
 
     @Query("SELECT * FROM purchases")

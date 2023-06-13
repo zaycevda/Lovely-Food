@@ -4,7 +4,10 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.testforeffectivemobile.R
 import com.example.testforeffectivemobile.databinding.DialogDishBinding
@@ -23,6 +26,8 @@ class DishDialog : DialogFragment(R.layout.dialog_dish) {
         binding = DialogDishBinding.inflate(layoutInflater)
 
         initDish()
+
+        addPurchase()
 
         return AlertDialog.Builder(requireActivity())
             .setView(binding.root)
@@ -44,11 +49,23 @@ class DishDialog : DialogFragment(R.layout.dialog_dish) {
         }
     }
 
+    private fun addPurchase() {
+        binding.btnAddToCart.setOnClickListener {
+            setFragmentResult(
+                REQUEST_ACTION_KEY,
+                bundleOf(ACTION_BUNDLE_KEY to true)
+            )
+            findNavController().navigateUp()
+        }
+    }
+
     companion object {
         const val DESCRIPTION_KEY = "DESCRIPTION_KEY"
         const val IMAGE_URL_KEY = "IMAGE_URL_KEY"
         const val NAME_KEY = "NAME_KEY"
         const val PRICE_KEY = "PRICE_KEY"
         const val WEIGHT_KEY = "WEIGHT_KEY"
+        const val REQUEST_ACTION_KEY = "REQUEST_ACTION_KEY"
+        const val ACTION_BUNDLE_KEY = "ACTION_BUNDLE_KEY"
     }
 }
