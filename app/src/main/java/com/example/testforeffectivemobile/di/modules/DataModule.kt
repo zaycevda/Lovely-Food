@@ -1,8 +1,8 @@
 package com.example.testforeffectivemobile.di.modules
 
 import android.content.Context
-import com.example.data.repository.ApiRepositoryImpl
-import com.example.data.service.Api
+import com.example.data.retrofit.repository.ApiRepositoryImpl
+import com.example.data.retrofit.service.Api
 import com.example.domain.repository.ApiRepository
 import dagger.Module
 import dagger.Provides

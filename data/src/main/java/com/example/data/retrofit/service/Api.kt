@@ -1,7 +1,7 @@
-package com.example.data.service
+package com.example.data.retrofit.service
 
-import com.example.data.models.CategoriesModel
-import com.example.data.models.DishesModel
+import com.example.data.retrofit.models.CategoriesModel
+import com.example.data.retrofit.models.DishesModel
 import retrofit2.http.GET
 import retrofit2.http.Headers
 

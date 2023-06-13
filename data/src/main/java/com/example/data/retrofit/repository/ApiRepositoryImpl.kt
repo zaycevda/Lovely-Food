@@ -1,9 +1,9 @@
-package com.example.data.repository
+package com.example.data.retrofit.repository
 
 import android.util.Log
-import com.example.data.service.Api
-import com.example.data.utils.toCategory
-import com.example.data.utils.toDish
+import com.example.data.retrofit.service.Api
+import com.example.data.retrofit.utils.toCategory
+import com.example.data.retrofit.utils.toDish
 import com.example.domain.models.Category
 import com.example.domain.models.Dish
 import com.example.domain.repository.ApiRepository
